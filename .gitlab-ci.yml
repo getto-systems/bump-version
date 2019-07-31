@@ -1,0 +1,49 @@
+stages:
+  - release
+  - notify
+
+release:
+  stage: release
+  only:
+    refs:
+      - triggers
+    variables:
+      - $RELEASE
+
+  image: buildpack-deps:disco-scm
+
+  variables:
+    GIT_USER_NAME: getto
+    GIT_USER_EMAIL: admin@getto.systems
+
+  script:
+    - ./bin/version_dump.sh
+    - ./bin/push_tags.sh
+
+release_success:
+  stage: notify
+  only:
+    refs:
+      - triggers
+    variables:
+      - $RELEASE
+  when: on_success
+
+  image: buildpack-deps:disco-curl
+
+  script:
+    - ./bin/notify.sh success
+
+release_failure:
+  stage: notify
+  only:
+    refs:
+      - triggers
+    variables:
+      - $RELEASE
+  when: on_failure
+
+  image: buildpack-deps:disco-curl
+
+  script:
+    - ./bin/notify.sh failure
