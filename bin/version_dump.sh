@@ -36,11 +36,10 @@ release_show_commits(){
 }
 
 release_version(){
-  if [ -x .release-version-dump.sh ]; then
-    ./.release-version-dump.sh
+  if [ -f .release-version-dump.sh ]; then
+    . .release-version-dump.sh
   else
     release_build_version
-    git add .release-version
   fi
 }
 release_build_version(){
@@ -72,6 +71,7 @@ release_build_version(){
   esac
 
   echo $version > .release-version
+  git add .release-version
 }
 release_next_version(){
   local only_ignored
@@ -126,6 +126,31 @@ release_range(){
   if [ -n "$(git tag | head -1)" ]; then
     range=$(git describe --abbrev=0 --tags)..
   fi
+}
+
+release_sync_version(){
+  local target=$1
+  local version=$(cat .release-version)
+
+  case "$target" in
+    mix.exs)
+      sed -i 's/version: "[0-9.-]\+"/version: "'$version'"/' "$target"
+      ;;
+    package.json|elm-package.json)
+      sed -i 's/"version": "[0-9.-]\+"/"version": "'$version'"/' "$target"
+      ;;
+    *.rb)
+      sed -i 's/VERSION = "[0-9.-]\+"/VERSION = "'$version'"/' "$target"
+      ;;
+    Chart.yaml)
+      sed -i 's/^version: [0-9.-]\+/version: '$version'/' "$target"
+      ;;
+    Cargo.toml)
+      sed -i 's/version = "[0-9.-]\+"/version = "'$version'"/' "$target"
+      ;;
+  esac
+
+  git add "$target"
 }
 
 release_version
