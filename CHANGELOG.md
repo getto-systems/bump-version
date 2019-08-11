@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Version : 0.2.3
+
+fix: .release-version-dump.sh See merge request getto-systems-labo/version-dump!4
+
+
 ## Version : 0.2.2
 
 fix: readme See merge request getto-systems-labo/version-dump!3
