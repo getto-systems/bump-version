@@ -2,22 +2,21 @@
 
 ## Version : 0.2.4
 
-- add: prefix before merge commits See merge request getto-systems-labo/version-dump!5
-- 
+- add: prefix before merge commits : See merge request getto-systems-labo/version-dump!5
 
 ## Version : 0.2.3
 
-fix: .release-version-dump.sh See merge request getto-systems-labo/version-dump!4
+- fix: .release-version-dump.sh : See merge request getto-systems-labo/version-dump!4
 
 
 ## Version : 0.2.2
 
-fix: readme See merge request getto-systems-labo/version-dump!3
+- fix: readme : See merge request getto-systems-labo/version-dump!3
 
 
 ## Version : 0.2.1
 
-add: release ignore file See merge request getto-systems-labo/version-dump!2
+- add: release ignore file : See merge request getto-systems-labo/version-dump!2
 
 
 ## Version : 0.2.0
