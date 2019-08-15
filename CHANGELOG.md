@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Version : 0.3.0
+
+- fix: merged commit message : See merge request getto-systems-labo/version-dump!7
+- fix: releaseignore : See merge request getto-systems-labo/version-dump!6
+
+
 ## Version : 0.2.4
 
 - add: prefix before merge commits : See merge request getto-systems-labo/version-dump!5
