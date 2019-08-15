@@ -32,7 +32,7 @@ release_show_commits(){
 
   release_range
 
-  git log "$range" --merges --format="%b$boundary" | xargs /bin/echo | sed "s/$boundary \?/\n/g" | sed "s/^/- /"
+  git log "$range" --merges --format="%b$boundary" | xargs /bin/echo | sed "s/$boundary \?/\n/g" | sed "s/See/: See/" | sed "s/^\(.\)/- \1/"
 }
 
 release_version(){
