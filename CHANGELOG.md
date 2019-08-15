@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Version : 0.2.4
+
+- add: prefix before merge commits See merge request getto-systems-labo/version-dump!5
+- 
+
 ## Version : 0.2.3
 
 fix: .release-version-dump.sh See merge request getto-systems-labo/version-dump!4
