@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Version : 0.3.1
+
+- fix: notify : See merge request getto-systems-labo/version-dump!8
+
+
 ## Version : 0.3.0
 
 - fix: merged commit message : See merge request getto-systems-labo/version-dump!7
