@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Version : 0.3.2
+
+- fix: push_tags : See merge request getto-systems-base/labo/version-dump!9
+
+
 ## Version : 0.3.1
 
 - fix: notify : See merge request getto-systems-labo/version-dump!8
