@@ -10,6 +10,20 @@ if [ $? != 0 ]; then
 fi
 
 if [ -f .git-maint-repo ]; then
-  maint=$(cat .git-maint-repo | sed "s|https://|https://$GITHUB_USER:$GITHUB_ACCESS_TOKEN@|")
-  git push $maint HEAD:master --tags
+  maint_repo=$(cat .git-maint-repo)
+  case "$maint_repo" in
+    https://bitbucket.org*)
+      maint=$(echo $maint_repo | sed "s|https://|https://$BITBUCKET_USER:$BITBUCKET_ACCESS_TOKEN@|")
+      ;;
+    https://github.com*)
+      maint=$(echo $maint_repo | sed "s|https://|https://$GITHUB_USER:$GITHUB_ACCESS_TOKEN@|")
+      ;;
+  esac
+
+  if [ -z "$maint" ]; then
+    echo "unknown hosting service: $maint_repo"
+    exit 1
+  fi
+
+  git push "$maint" HEAD:master --tags
 fi
