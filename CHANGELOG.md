@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Version : 0.3.3
+
+- fix: push tag for bitbucket and github : See merge request getto-systems-base/projects/version-dump!10
+
+
 ## Version : 0.3.2
 
 - fix: push_tags : See merge request getto-systems-base/labo/version-dump!9
