@@ -139,13 +139,16 @@ release_sync_version(){
     package.json|elm-package.json)
       sed -i 's/"version": "[0-9.-]\+"/"version": "'$version'"/' "$target"
       ;;
-    *.rb)
-      sed -i 's/VERSION = "[0-9.-]\+"/VERSION = "'$version'"/' "$target"
-      ;;
     Chart.yaml)
       sed -i 's/^version: [0-9.-]\+/version: '$version'/' "$target"
       ;;
     Cargo.toml)
+      sed -i 's/version = "[0-9.-]\+"/version = "'$version'"/' "$target"
+      ;;
+    *.rb)
+      sed -i 's/VERSION = "[0-9.-]\+"/VERSION = "'$version'"/' "$target"
+      ;;
+    *.elm)
       sed -i 's/version = "[0-9.-]\+"/version = "'$version'"/' "$target"
       ;;
   esac
