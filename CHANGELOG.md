@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Version : 0.4.0
+
+- add: elm version sync : See merge request getto-systems-base/projects/version-dump!12
+- fix: releaseignore : See merge request getto-systems-base/projects/version-dump!11
+
+
 ## Version : 0.3.3
 
 - fix: push tag for bitbucket and github : See merge request getto-systems-base/projects/version-dump!10
