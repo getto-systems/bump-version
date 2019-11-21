@@ -2,7 +2,7 @@
 
 set -x
 
-message=$1
+message=$(cat)
 branch=$(echo "$message" | head -1 | sed -e "s/[^[:alnum:]]\+/-/g")
 
 if [ -z "$branch" ]; then

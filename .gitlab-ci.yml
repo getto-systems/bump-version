@@ -15,7 +15,7 @@ release:
 
   script:
     - ./bin/version_dump.sh
-    - ./bin/request.sh "version dump: $(cat .release-version)"
+    - ./bin/version_dump_request_message.sh | ./bin/request.sh
 
 release_success:
   stage: notify
