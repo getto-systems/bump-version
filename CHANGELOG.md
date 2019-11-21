@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Version : 0.5.0
+
+- add: request : See merge request getto-systems-base/projects/version-dump!13
+
+
 ## Version : 0.4.0
 
 - add: elm version sync : See merge request getto-systems-base/projects/version-dump!12
