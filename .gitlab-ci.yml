@@ -15,6 +15,7 @@ version_dump:
   before_script:
     - git config user.email admin@getto.systems
     - git config user.name getto
+    - curl https://raw.githubusercontent.com/getto-systems/git-post/master/bin/setup.sh | bash -s -- /opt/getto-systems
   script:
     - ./bin/version_dump.sh
     - ./bin/request.sh ./.release-version-message.sh
