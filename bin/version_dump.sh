@@ -159,7 +159,4 @@ release_sync_version(){
 release_version
 release_changelog
 
-git config user.email "$GIT_USER_EMAIL"
-git config user.name "$GIT_USER_NAME"
-
 git commit -m "version dump: $(cat .release-version)"

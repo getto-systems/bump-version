@@ -1,10 +1,9 @@
 stages:
+  - version_dump
   - release
-  - notify
-  - push_tags
 
-release:
-  stage: release
+version_dump:
+  stage: version_dump
   only:
     refs:
       - triggers
@@ -13,12 +12,15 @@ release:
 
   image: buildpack-deps:disco-scm
 
+  before_script:
+    - git config user.email admin@getto.systems
+    - git config user.name getto
   script:
     - ./bin/version_dump.sh
-    - ./bin/version_dump_request_message.sh | ./bin/request.sh
+    - ./bin/request.sh ./.release-version-message.sh
 
-release_success:
-  stage: notify
+version_dump_success:
+  stage: version_dump
   only:
     refs:
       - triggers
@@ -31,8 +33,8 @@ release_success:
   script:
     - curl https://raw.githubusercontent.com/getto-systems/psycher-getto/master/bin/notify-deploy.sh | bash -s -- -l $GETTO_PSYCHER_URL?$GETTO_PSYCHER_TOKEN=true success
 
-release_failure:
-  stage: notify
+version_dump_failure:
+  stage: version_dump
   only:
     refs:
       - triggers
@@ -45,8 +47,8 @@ release_failure:
   script:
     - curl https://raw.githubusercontent.com/getto-systems/psycher-getto/master/bin/notify-deploy.sh | bash -s -- -l $GETTO_PSYCHER_URL?$GETTO_PSYCHER_TOKEN=true failure
 
-push_tags:
-  stage: push_tags
+release:
+  stage: release
   only:
     refs:
       - master@getto-systems-base/projects/version-dump
