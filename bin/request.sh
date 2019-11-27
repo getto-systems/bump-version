@@ -2,7 +2,12 @@
 
 set -x
 
-message=$(cat)
+if [ ! -x "$1" ]; then
+  echo "usage: ./request.sh /path/to/message.sh"
+  exit 1
+fi
+
+message=$($1)
 branch=$(echo "$message" | head -1 | sed -e "s/[^[:alnum:]]\+/-/g")
 
 if [ -z "$branch" ]; then
@@ -10,15 +15,10 @@ if [ -z "$branch" ]; then
   exit 1
 fi
 
-git clone https://github.com/getto-systems/git-post.git
-
-cwd=$(pwd)
-export PATH=$PATH:$cwd/git-post/bin
-
 git checkout -b "$branch"
 git commit -m "$message"
 
 super=$(git remote -v | grep "origin.*fetch" | sed 's|.*https|https|' | sed "s|gitlab-ci-token:.*@|$GITLAB_USER:$GITLAB_ACCESS_TOKEN@|" | sed "s| .*||")
 git push $super $branch:$branch
 
-git post "$message" master
+curl https://raw.githubusercontent.com/getto-systems/git-post/master/bin/git-post | bash -s -- "$message" master
