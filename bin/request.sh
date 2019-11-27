@@ -21,4 +21,4 @@ git commit -m "$message"
 super=$(git remote -v | grep "origin.*fetch" | sed 's|.*https|https|' | sed "s|gitlab-ci-token:.*@|$GITLAB_USER:$GITLAB_ACCESS_TOKEN@|" | sed "s| .*||")
 git push $super $branch:$branch
 
-curl https://raw.githubusercontent.com/getto-systems/git-post/master/bin/git-post | bash -s -- "$message" master
+git post "$message" master
