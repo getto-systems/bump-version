@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Version : 0.6.0
+
+- fix: version_dump : See merge request getto-systems-base/projects/version-dump!15
+
+
 ## Version : 0.5.0
 
 - add: request : See merge request getto-systems-base/projects/version-dump!13
