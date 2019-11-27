@@ -1,5 +1,6 @@
 stages:
   - version_dump
+  - version_dump_notify
   - release
 
 version_dump:
@@ -12,6 +13,9 @@ version_dump:
 
   image: buildpack-deps:disco-scm
 
+  variables:
+    PATH: $PATH:/opt/getto-systems/git-post/bin
+
   before_script:
     - git config user.email admin@getto.systems
     - git config user.name getto
@@ -21,7 +25,7 @@ version_dump:
     - ./bin/request.sh ./.release-version-message.sh
 
 version_dump_success:
-  stage: version_dump
+  stage: version_dump_notify
   only:
     refs:
       - triggers
@@ -35,7 +39,7 @@ version_dump_success:
     - curl https://raw.githubusercontent.com/getto-systems/psycher-getto/master/bin/notify-deploy.sh | bash -s -- -l $GETTO_PSYCHER_URL?$GETTO_PSYCHER_TOKEN=true success
 
 version_dump_failure:
-  stage: version_dump
+  stage: version_dump_notify
   only:
     refs:
       - triggers
