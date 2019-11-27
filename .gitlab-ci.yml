@@ -13,13 +13,11 @@ version_dump:
 
   image: buildpack-deps:disco-scm
 
-  variables:
-    PATH: $PATH:/opt/getto-systems/git-post/bin
-
   before_script:
     - git config user.email admin@getto.systems
     - git config user.name getto
     - curl https://raw.githubusercontent.com/getto-systems/git-post/master/bin/setup.sh | bash -s -- /opt/getto-systems
+    - export PATH=$PATH:/opt/getto-systems/git-post/bin
   script:
     - ./bin/version_dump.sh
     - ./bin/request.sh ./.release-version-message.sh
