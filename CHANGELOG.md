@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## Version : 0.6.2
+
+- fix: gitlab-ci : See merge request getto-systems-base/projects/version-dump!23
+- version dump: 0.6.1 : See merge request getto-systems-base/projects/version-dump!22
+- fix: gitlab-ci : See merge request getto-systems-base/projects/version-dump!21
+- fix: set-window-title : See merge request getto-systems-base/projects/version-dump!20
+
+
 ## Version : 0.6.1
 
 - fix: gitlab-ci : See merge request getto-systems-base/projects/version-dump!21
