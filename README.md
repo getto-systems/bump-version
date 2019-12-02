@@ -2,6 +2,8 @@
 
 bumping version
 
+state: production ready
+
 ```bash
 cat ./bin/bump_version.sh | bash
 cat ./bin/request.sh | bash -s -- ./.bump-message.sh
