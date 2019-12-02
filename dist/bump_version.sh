@@ -106,7 +106,6 @@ bump_changelog(){
   bump_changelog_content > $changelog
 
   if [ -f $tmpfile ]; then
-    cat $tmpfile | grep -v '^'"$header"'$'
     rm $tmpfile
   fi
 
@@ -119,6 +118,10 @@ bump_changelog_content(){
   echo ""
 
   bump_commits
+
+  if [ -f $tmpfile ]; then
+    cat $tmpfile | grep -v '^'"$header"'$'
+  fi
 }
 bump_commits(){
   local range
