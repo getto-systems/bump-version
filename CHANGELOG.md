@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Version : 1.0.1
+## Version : 1.1.0
 
-- fix: gitlab-ci : See merge request getto-systems-base/labo/ci/bump-version!41
+- fix: bump ignore : See merge request getto-systems-base/labo/ci/bump-version!43
 
