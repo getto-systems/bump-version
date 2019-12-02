@@ -81,7 +81,7 @@ image_push:
   stage: image_push
   only:
     refs:
-      - master@getto-systems-base/projects/docs
+      - master@getto-systems-base/labo/ci/bump-version
     changes:
       - Dockerfile
   except:
