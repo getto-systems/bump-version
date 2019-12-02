@@ -4,6 +4,10 @@ if [ -z "$BUMP_VERSION_FILE" ]; then
   BUMP_VERSION_FILE=.release-version
 fi
 
+if [ -z "$BUMP_IGNORE_FILE" ]; then
+  BUMP_IGNORE_FILE=.bump-ignore
+fi
+
 bump_version(){
   if [ -f .bump-version.sh ]; then
     . .bump-version.sh
@@ -60,12 +64,11 @@ bump_next(){
   fi
 }
 bump_check_changes(){
-  local ignore=.bumpignore
   local tmpdir
   local file
   local line
 
-  if [ -f $ignore ]; then
+  if [ -f $BUMP_IGNORE_FILE ]; then
     tmpdir=.bump-version
 
     if [ -d $tmpdir ]; then
@@ -73,7 +76,7 @@ bump_check_changes(){
     fi
 
     mkdir $tmpdir
-    cp $ignore $tmpdir/.gitignore
+    cp $BUMP_IGNORE_FILE $tmpdir/.gitignore
 
     for file in $(git diff "$range" --name-only); do
       mkdir -p $tmpdir/$(dirname $file)
