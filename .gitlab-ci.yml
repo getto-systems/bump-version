@@ -36,6 +36,7 @@ release:
 
   script:
     - cat ./bin/push_tags.sh | bash
+    - ./bin/deploy.sh
 
 release_success:
   stage: release_notify
