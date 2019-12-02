@@ -19,8 +19,8 @@ bump_version:
     - curl https://raw.githubusercontent.com/getto-systems/git-post/master/scripts/setup.sh | bash -s -- ./vendor/getto-systems
     - export PATH=$PATH:./vendor/getto-systems/git-post/bin
   script:
-    - cat ./bin/bump_version.sh | bash
-    - cat ./bin/request.sh | bash -s -- ./.bump-message.sh
+    - cat ./dist/bump_version.sh | bash
+    - cat ./dist/request.sh | bash -s -- ./.bump-message.sh
 
 release:
   stage: release
@@ -35,7 +35,7 @@ release:
       - schedules
 
   script:
-    - cat ./bin/push_tags.sh | bash
+    - cat ./dist/push_tags.sh | bash
     - ./bin/deploy.sh
 
 release_success:
