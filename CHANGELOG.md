@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Version : 1.0.0
+## Version : 1.0.1
 
-- production ready! : See merge request getto-systems-base/labo/ci/bump-version!39
+- fix: gitlab-ci : See merge request getto-systems-base/labo/ci/bump-version!41
 
