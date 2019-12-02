@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Version : 0.6.6
+
+
+
 ## Version : 0.6.5
 
 - fix: gitlab-ci : See merge request getto-systems-base/labo/ci/version-dump!27
