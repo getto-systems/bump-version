@@ -1,7 +1,112 @@
+image: getto/hangar:b0kFkNcrEFHabrXN
+
 stages:
+  - image_build
+  - image_test
+  - image_fix_vulnerabilities
+  - image_push
   - bump_version
   - release
   - release_notify
+
+image_build:
+  stage: image_build
+  only:
+    refs:
+      - merge_requests
+    changes:
+      - Dockerfile
+
+  image: getto/hangar:latest
+
+  variables:
+    DOCKER_HOST: tcp://docker:2375/
+    DOCKER_DRIVER: overlay2
+    DOCKER_CONTENT_TRUST: 1
+  services:
+    - docker:dind
+
+  cache:
+    paths:
+      - .cache
+
+  script:
+    - getto-hangar-build.sh
+
+image_test:
+  stage: image_test
+  only:
+    refs:
+      - schedules
+    variables:
+      - $CHECK
+
+  image: getto/hangar:latest
+
+  variables:
+    DOCKER_HOST: tcp://docker:2375/
+    DOCKER_DRIVER: overlay2
+    DOCKER_CONTENT_TRUST: 1
+  services:
+    - docker:dind
+
+  cache:
+    paths:
+      - .cache
+
+  script:
+    - getto-hangar-test.sh
+
+image_fix_vulnerabilities:
+  stage: image_fix_vulnerabilities
+  only:
+    refs:
+      - schedules
+    variables:
+      - $CHECK
+  when: on_failure
+
+  image: getto/hangar:latest
+
+  before_script:
+    - git config user.email admin@getto.systems
+    - git config user.name getto
+    - curl https://raw.githubusercontent.com/getto-systems/git-post/master/scripts/setup.sh | bash -s -- ./vendor/getto-systems
+    - export PATH=$PATH:./vendor/getto-systems/git-post/bin
+  script:
+    - getto-hangar-fix-vulnerabilities.sh
+    - curl https://raw.githubusercontent.com/getto-systems/version-dump/master/bin/request.sh | bash -s -- ./.fix-vulnerabilities-message.sh
+
+image_push:
+  stage: image_push
+  only:
+    refs:
+      - master@getto-systems-base/projects/docs
+    changes:
+      - Dockerfile
+  except:
+    refs:
+      - schedules
+      - triggers
+
+  image: getto/hangar:latest
+
+  variables:
+    DOCKER_HOST: tcp://docker:2375/
+    DOCKER_DRIVER: overlay2
+    DOCKER_CONTENT_TRUST: 1
+  before_script:
+    - git config user.email admin@getto.systems
+    - git config user.name getto
+    - curl https://raw.githubusercontent.com/getto-systems/git-post/master/scripts/setup.sh | bash -s -- ./vendor/getto-systems
+    - export PATH=$PATH:./vendor/getto-systems/git-post/bin
+  services:
+    - docker:dind
+
+  script:
+    - getto-hangar-push.sh
+    - curl https://raw.githubusercontent.com/getto-systems/version-dump/master/bin/request.sh | bash -s -- ./.fix-image-message.sh
+
 
 bump_version:
   stage: bump_version
