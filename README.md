@@ -1,9 +1,11 @@
-# version-dump
+# bump-version
 
-version dump script
+bumping version
 
 ```bash
-GIT_USER_EMAIL="user-name@example.com" GIT_USER_NAME="user-name" ./bin/version_dump.sh
+cat ./bin/bump_version.sh | bash
+cat ./bin/request.sh | bash -s -- ./.bump-message.sh
+cat ./bin/push_tags.sh | bash
 ```
 
 
@@ -20,64 +22,42 @@ GIT_USER_EMAIL="user-name@example.com" GIT_USER_NAME="user-name" ./bin/version_d
 
 ## Usage
 
-```bash
-GIT_USER_EMAIL="user-name@example.com" GIT_USER_NAME="user-name" ./bin/version_dump.sh
-```
-
-- create CHANGELOG.md
-- create .release-version
-- `git commit -m "version dump : $(cat .release-version)"`
-
-
-### Customize
-
-`.release-version-dump.sh`
+### bumping version
 
 ```bash
-release_build_version
-release_sync_version package.json
+cat ./bin/bump_version.sh | bash
 ```
 
-- `release_build_version` : build `.release-version` file
-- `release_sync_version` : sync version of target file
+- modify CHANGELOG.md
+- modify .release-version
+- `git commit -m "version bumped : $(cat .release-version)"`
 
-#### sync version
 
-corresponding files
+#### Customize
+
+`.bump-version.sh`
 
 ```bash
-case "$target" in
-  mix.exs)
-    sed -i 's/version: "[0-9.-]\+"/version: "'$version'"/' "$target"
-    ;;
-  package.json|elm-package.json)
-    sed -i 's/"version": "[0-9.-]\+"/"version": "'$version'"/' "$target"
-    ;;
-  *.rb)
-    sed -i 's/VERSION = "[0-9.-]\+"/VERSION = "'$version'"/' "$target"
-    ;;
-  Chart.yaml)
-    sed -i 's/^version: [0-9.-]\+/version: '$version'/' "$target"
-    ;;
-  Cargo.toml)
-    sed -i 's/version = "[0-9.-]\+"/version = "'$version'"/' "$target"
-    ;;
-esac
+bump_build
+bump_sync package.json 's/"version": "[0-9.-]\+"/"version": "'$version'"/'
 ```
 
+- `bump_build` : build `.release-version` file
+- `bump_sync` : sed and git add
 
-### version rule
+
+#### version rule
 
 - major version up : there is commit that include `!` in commit message since last version-up
 - minor version up : there is not-ignorable file changes since last version-up
 - patch version up : there is only ignorable file changes since last version-up
 
 
-#### .releaseignore file
+#### .bumpignore file
 
-specify ignorable files in `.releaseignore` file
+specify ignorable files in `.bumpignore` file
 
-`.releaseignore` example(same syntax as gitignore)
+`.bumpignore` example(same syntax as gitignore)
 
 ```gitignore
 /*
@@ -87,10 +67,28 @@ specify ignorable files in `.releaseignore` file
 - basically, ignore all files
 - `/src/` files are not-ignorable
 
+### create pull request
+
+```bash
+cat ./bin/request.sh | bash -s -- ./.bump-message.sh
+```
+
+- generate message by `./.bump-message.sh` (first argument : executable file)
+- create pull request (supported: GitLab only)
+
+### push tags
+
+```bash
+cat ./bin/push_tags.sh | bash
+```
+
+- `git push --tags` : to origin
+- `git push --tags` : to `.git-maint-repo` if exists
+
 
 ## License
 
-version-dump is licensed under the [MIT](LICENSE) license.
+bump-version is licensed under the [MIT](LICENSE) license.
 
 Copyright &copy; since 2019 shun@getto.systems
 
