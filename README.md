@@ -55,11 +55,11 @@ bump_sync package.json 's/"version": "[0-9.-]\+"/"version": "'$version'"/'
 - patch version up : there is only ignorable file changes since last version-up
 
 
-#### .bumpignore file
+#### .bump-ignore file
 
-specify ignorable files in `.bumpignore` file
+specify ignorable files in `.bump-ignore` file
 
-`.bumpignore` example(same syntax as gitignore)
+`.bump-ignore` example(same syntax as gitignore)
 
 ```gitignore
 /*
@@ -68,6 +68,7 @@ specify ignorable files in `.bumpignore` file
 
 - basically, ignore all files
 - `/src/` files are not-ignorable
+
 
 ### create pull request
 
