@@ -107,7 +107,6 @@ image_push:
     - getto-hangar-push.sh
     - cat ./dist/request.sh | bash -s -- ./.fix-image-message.sh
 
-
 bump_version:
   stage: bump_version
   only:
