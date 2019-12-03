@@ -75,7 +75,7 @@ image_fix_vulnerabilities:
     - export PATH=$PATH:./vendor/getto-systems/git-post/bin
   script:
     - getto-hangar-fix-vulnerabilities.sh
-    - curl https://raw.githubusercontent.com/getto-systems/version-dump/master/bin/request.sh | bash -s -- ./.fix-vulnerabilities-message.sh
+    - cat ./dist/request.sh | bash -s -- ./.fix-vulnerabilities-message.sh
 
 image_push:
   stage: image_push
@@ -105,7 +105,7 @@ image_push:
 
   script:
     - getto-hangar-push.sh
-    - curl https://raw.githubusercontent.com/getto-systems/version-dump/master/bin/request.sh | bash -s -- ./.fix-image-message.sh
+    - cat ./dist/request.sh | bash -s -- ./.fix-image-message.sh
 
 
 bump_version:
@@ -141,7 +141,7 @@ release:
 
   script:
     - cat ./dist/push_tags.sh | bash
-    - ./bin/deploy.sh
+    - ./scripts/deploy.sh
 
 release_success:
   stage: release_notify
@@ -161,7 +161,7 @@ release_success:
   before_script:
     - export channel=$SLACK_CHANNEL
   script:
-    - ./bin/check_version.sh
+    - ./scripts/check_version.sh
     - curl https://raw.githubusercontent.com/getto-systems/psycher-getto/master/bin/notify-release.sh | bash -s -- -l $GETTO_PSYCHER_URL?$GETTO_PSYCHER_TOKEN=true success
 
 release_failure:
