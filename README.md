@@ -5,9 +5,9 @@ bumping version
 state: production ready
 
 ```bash
-cat ./bin/bump_version.sh | bash
-cat ./bin/request.sh | bash -s -- ./.bump-message.sh
-cat ./bin/push_tags.sh | bash
+curl https://trellis.getto.systems/ci/bump-version/VERSION/dist/bump_version.sh | bash
+curl https://trellis.getto.systems/ci/bump-version/VERSION/dist/request.sh | bash -s -- ./.bump-message.sh
+curl https://trellis.getto.systems/ci/bump-version/VERSION/dist/push_tags.sh | bash
 ```
 
 
@@ -27,7 +27,7 @@ cat ./bin/push_tags.sh | bash
 ### bumping version
 
 ```bash
-cat ./bin/bump_version.sh | bash
+curl https://trellis.getto.systems/ci/bump-version/VERSION/dist/bump_version.sh | bash
 ```
 
 - modify CHANGELOG.md
@@ -73,7 +73,7 @@ specify ignorable files in `.bump-ignore` file
 ### create pull request
 
 ```bash
-cat ./bin/request.sh | bash -s -- ./.bump-message.sh
+curl https://trellis.getto.systems/ci/bump-version/VERSION/dist/request.sh | bash -s -- ./.bump-message.sh
 ```
 
 - generate message by `./.bump-message.sh` (first argument : executable file)
@@ -82,7 +82,7 @@ cat ./bin/request.sh | bash -s -- ./.bump-message.sh
 ### push tags
 
 ```bash
-cat ./bin/push_tags.sh | bash
+curl https://trellis.getto.systems/ci/bump-version/VERSION/dist/push_tags.sh | bash
 ```
 
 - `git push --tags` : to origin
