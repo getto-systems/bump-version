@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 if [ -z "$BUMP_VERSION_FILE" ]; then
   BUMP_VERSION_FILE=.release-version
 fi
@@ -66,7 +68,6 @@ bump_next(){
 bump_check_changes(){
   local tmpdir
   local file
-  local line
 
   if [ -f $BUMP_IGNORE_FILE ]; then
     tmpdir=.bump-version
