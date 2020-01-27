@@ -10,7 +10,7 @@ RUN set -x && \
     git \
     python-pip \
   && \
-  : "to fix vulnerabilities, update packages : 2020-01-20" && \
+  : "to fix vulnerabilities, update packages : 2020-01-27" && \
   : apt-get install -y --no-install-recommends \
     libss2 \
   && \
