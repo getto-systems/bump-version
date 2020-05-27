@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## Version : 1.6.0
+
+- fix: gitlab-ci : See merge request getto-systems-base/labo/ci/bump-version!73
+
+- fix: README : See merge request getto-systems-base/labo/ci/bump-version!72
+
+
+
 ## Version : 1.5.0
 
 - fix: tagging sh : See merge request getto-systems-base/labo/ci/bump-version!70
