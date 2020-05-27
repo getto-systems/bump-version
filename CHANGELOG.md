@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Version : 1.7.0
+
+- fix: push_tags : See merge request getto-systems-base/labo/ci/bump-version!78
+
+
 ## Version : 1.6.1
 
 - fix: gitlab-ci : See merge request getto-systems-base/labo/ci/bump-version!76
