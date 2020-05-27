@@ -4,7 +4,11 @@ if [ -z "$BUMP_VERSION_FILE" ]; then
   BUMP_VERSION_FILE=.release-version
 fi
 
-git tag $(cat $BUMP_VERSION_FILE)
+if [ -x .bump-version-tags ]; then
+  .bump-version-tags
+else
+  git tag $(cat $BUMP_VERSION_FILE)
+fi
 
 super=$(git remote -v | grep "origin.*fetch" | sed 's|.*https|https|' | sed "s|gitlab-ci-token:.*@|$GITLAB_USER:$GITLAB_ACCESS_TOKEN@|" | sed "s| .*||")
 git push $super HEAD:master --tags
