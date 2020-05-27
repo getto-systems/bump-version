@@ -99,7 +99,7 @@ image_fix_vulnerabilities:
   script:
     - curl $TRELLIS_HANGAR/fix-vulnerabilities.sh | sh -s -- Dockerfile
     - 'git add Dockerfile && git commit -m "fix: vulnerabilities"'
-    - curl ./dist/request.sh | bash -s -- ./.message/fix-vulnerabilities.sh
+    - cat ./dist/request.sh | bash -s -- ./.message/fix-vulnerabilities.sh
 
 image_push:
   stage: image_push
@@ -139,7 +139,7 @@ image_push:
     - 'sed -i -e "s|image: getto/hangar:$hangar_id-\\?.*|image: $image|" .gitlab-ci.yml'
     - echo $image > .getto-hangar-image
     - 'git add .gitlab-ci.yml .getto-hangar-image && git commit -m "update: image"'
-    - curl ./dist/request.sh | bash -s -- ./.message/fix-image.sh
+    - cat ./dist/request.sh | bash -s -- ./.message/fix-image.sh
 
 bump_version:
   stage: bump_version
@@ -157,8 +157,8 @@ bump_version:
     - curl $TRELLIS_GIT_POST/setup.sh | sh -s -- ./vendor/getto-systems
     - export PATH=$PATH:./vendor/getto-systems/git-post/bin
   script:
-    - curl ./dist/bump_version.sh | bash
-    - curl ./dist/request.sh | bash -s -- ./.message/bump.sh
+    - cat ./dist/bump_version.sh | bash
+    - cat ./dist/request.sh | bash -s -- ./.message/bump.sh
 
 release:
   stage: release
@@ -173,7 +173,7 @@ release:
       - schedules
 
   script:
-    - curl ./dist/push_tags.sh | sh
+    - cat ./dist/push_tags.sh | sh
 
 release_success:
   stage: release_notify
