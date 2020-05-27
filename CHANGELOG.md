@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Version : 1.5.0
+
+- fix: tagging sh : See merge request getto-systems-base/labo/ci/bump-version!70
+- fix: gitlab-ci : See merge request getto-systems-base/labo/ci/bump-version!69
+
+
 ## Version : 1.4.0
 
 - fix: fetch tags before build commits range : See merge request getto-systems-base/labo/ci/bump-version!67
