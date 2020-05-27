@@ -90,7 +90,7 @@ curl https://trellis.getto.systems/ci/bump-version/VERSION/dist/push_tags.sh | b
 
 options
 
-- `.bump-version-tag.sh` : custom tagging sh : default `git tag $(.release-version)`
+- `.bump-version-tag.sh` : custom tagging sh : default `git tag $(cat .release-version)`
 
 
 ## License
