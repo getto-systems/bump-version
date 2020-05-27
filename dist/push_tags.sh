@@ -1,12 +1,12 @@
 #!/bin/bash
 
-if [ -z "$BUMP_VERSION_FILE" ]; then
-  BUMP_VERSION_FILE=.release-version
-fi
-
-if [ -x .bump-version-tag.sh ]; then
-  .bump-version-tag.sh
+if [ -x ./.bump-version-tag.sh ]; then
+  ./.bump-version-tag.sh
 else
+  if [ -z "$BUMP_VERSION_FILE" ]; then
+    BUMP_VERSION_FILE=.release-version
+  fi
+
   git tag $(cat $BUMP_VERSION_FILE)
 fi
 
