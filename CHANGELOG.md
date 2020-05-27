@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Version : 1.6.1
+
+- fix: gitlab-ci : See merge request getto-systems-base/labo/ci/bump-version!76
+- fix: README : See merge request getto-systems-base/labo/ci/bump-version!75
+
+
 ## Version : 1.6.0
 
 - fix: gitlab-ci : See merge request getto-systems-base/labo/ci/bump-version!73
