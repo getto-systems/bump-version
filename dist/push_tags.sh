@@ -4,8 +4,8 @@ if [ -z "$BUMP_VERSION_FILE" ]; then
   BUMP_VERSION_FILE=.release-version
 fi
 
-if [ -x .bump-version-tags ]; then
-  .bump-version-tags
+if [ -x .bump-version-tag.sh ]; then
+  .bump-version-tag.sh
 else
   git tag $(cat $BUMP_VERSION_FILE)
 fi
