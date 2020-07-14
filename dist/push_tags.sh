@@ -11,7 +11,10 @@ else
 fi
 
 super=$(git remote -v | grep "origin.*fetch" | sed 's|.*https|https|' | sed "s|gitlab-ci-token:.*@|$GITLAB_USER:$GITLAB_ACCESS_TOKEN@|" | sed "s| .*||")
-git push $super HEAD:master --tags
+
+default_branch=$(git ls-remote --symref ${super} HEAD | grep ref: | awk '{ print $2 }' | sed 's|^refs/heads/||')
+
+git push $super HEAD:${default_branch} --tags
 
 if [ $? != 0 ]; then
   exit 1
@@ -33,5 +36,6 @@ if [ -f .git-maint-repo ]; then
     exit 1
   fi
 
-  git push "$maint" HEAD:master --tags
+  default_branch=$(git ls-remote --symref ${maint} HEAD | grep ref: | awk '{ print $2 }' | sed 's|^refs/heads/||')
+  git push "$maint" HEAD:${default_branch} --tags
 fi

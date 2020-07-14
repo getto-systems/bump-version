@@ -21,4 +21,5 @@ git commit -m "$message"
 super=$(git remote -v | grep "origin.*fetch" | sed 's|.*https|https|' | sed "s|gitlab-ci-token:.*@|$GITLAB_USER:$GITLAB_ACCESS_TOKEN@|" | sed "s| .*||")
 git push $super $branch:$branch
 
-git post "$message" master
+default_branch=$(git ls-remote --symref ${super} HEAD | grep ref: | awk '{ print $2 }' | sed 's|^refs/heads/||')
+git post "${message}" "${default_branch}"
