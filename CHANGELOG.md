@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Version : 1.8.0
+
+- fix: branch : See merge request getto-systems-base/labo/ci/bump-version!80
+
+
 ## Version : 1.7.0
 
 - fix: push_tags : See merge request getto-systems-base/labo/ci/bump-version!78
