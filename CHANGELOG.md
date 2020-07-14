@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Version : 1.9.0
+
+- fix: sh : See merge request getto-systems-base/labo/ci/bump-version!83
+- fix: gitlab ci : See merge request getto-systems-base/labo/ci/bump-version!82
+
+
 ## Version : 1.8.0
 
 - fix: branch : See merge request getto-systems-base/labo/ci/bump-version!80
