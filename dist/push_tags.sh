@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
 if [ -x ./.bump-version-tag.sh ]; then
   ./.bump-version-tag.sh
