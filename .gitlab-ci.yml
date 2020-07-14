@@ -39,6 +39,12 @@ release:
       - triggers
       - schedules
 
+  image: buildpack-deps:buster-scm
+
+  before_script:
+    - apt-get update
+    - apt-get install python3-pip
+    - pip3 install awscli
   script:
     - cat ./dist/push_tags.sh | sh
     - ./scripts/deploy.sh
