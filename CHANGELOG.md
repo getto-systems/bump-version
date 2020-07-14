@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Version : 1.10.2
+
+- fix: gitlab-ci : See merge request getto-systems-base/labo/ci/bump-version!90
+
+
 ## Version : 1.10.1
 
 - fix: gitlab ci : See merge request getto-systems-base/labo/ci/bump-version!88
