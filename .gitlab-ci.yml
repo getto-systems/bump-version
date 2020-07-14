@@ -5,7 +5,7 @@ stages:
 
 variables:
   TRELLIS_HANGAR: https://trellis.getto.systems/hangar/3.5.0
-  TRELLIS_GIT_POST: https://trellis.getto.systems/git/post/1.0.0
+  TRELLIS_GIT_POST: https://trellis.getto.systems/git/post/1.5.1
   TRELLIS_PSYCHER_GETTO: https://trellis.getto.systems/psycher/getto/2.6.0
 
 bump_version:
