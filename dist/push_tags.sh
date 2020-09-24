@@ -14,6 +14,7 @@ super=$(git remote -v | grep "origin.*fetch" | sed 's|.*https|https|' | sed "s|g
 
 default_branch=$(git ls-remote --symref ${super} HEAD | grep ref: | awk '{ print $2 }' | sed 's|^refs/heads/||')
 
+git fetch --unshallow
 git push $super HEAD:${default_branch} --tags
 
 if [ $? != 0 ]; then
