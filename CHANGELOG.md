@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Version : 1.12.0
+
+- fix: fetch --unshallow before get tags : See merge request getto-systems-base/labo/ci/bump-version!94
+
+
 ## Version : 1.11.0
 
 - fix: fetch --unshallow before push tags : See merge request getto-systems-base/labo/ci/bump-version!92
