@@ -134,7 +134,7 @@ bump_commits(){
 }
 
 bump_commits_range(){
-  git fetch --tags
+  git fetch --tags --unshallow
   if [ -n "$(git tag | head -1)" ]; then
     range=$(git describe --abbrev=0 --tags)..
   fi
