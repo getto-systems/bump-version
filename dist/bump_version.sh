@@ -18,6 +18,10 @@ if [ -z "$BUMP_SCRIPT" ]; then
   BUMP_SCRIPT=.bump-version.sh
 fi
 
+if [ -z "$BUMP_VERSION_SUFFIX" ]; then
+  BUMP_VERSION_SUFFIX=
+fi
+
 if [ -f $BUMP_VERSION_FILE ]; then
   BUMP_LAST_VERSION=$(cat $BUMP_VERSION_FILE)
 else
@@ -57,7 +61,7 @@ bump_build() {
     ;;
   esac
 
-  echo $version >$BUMP_VERSION_FILE
+  echo "${version}${BUMP_VERSION_SUFFIX}" >$BUMP_VERSION_FILE
   git add $BUMP_VERSION_FILE
 }
 bump_next() {
