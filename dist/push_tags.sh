@@ -1,7 +1,15 @@
 #!/usr/bin/env sh
 
-if [ -x ./.bump-version-tag.sh ]; then
-  ./.bump-version-tag.sh
+if [ -z "$BUMP_MAINT_REPO_FILE" ]; then
+  BUMP_MAINT_REPO_FILE=.git-maint-repo
+fi
+
+if [ -z "$BUMP_TAG_SCRIPT" ]; then
+  BUMP_TAG_SCRIPT=.bump-version-tag.sh
+fi
+
+if [ -x "$BUMP_TAG_SCRIPT" ]; then
+  . $BUMP_TAG_SCRIPT
 else
   if [ -z "$BUMP_VERSION_FILE" ]; then
     BUMP_VERSION_FILE=.release-version
@@ -21,8 +29,8 @@ if [ $? != 0 ]; then
   exit 1
 fi
 
-if [ -f .git-maint-repo ]; then
-  maint_repo=$(cat .git-maint-repo)
+if [ -f $BUMP_MAINT_REPO_FILE ]; then
+  maint_repo=$(cat $BUMP_MAINT_REPO_FILE)
   case "$maint_repo" in
     https://bitbucket.org*)
       maint=$(echo $maint_repo | sed "s|https://|https://$BITBUCKET_USER:$BITBUCKET_ACCESS_TOKEN@|")
