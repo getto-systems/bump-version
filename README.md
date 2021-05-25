@@ -34,11 +34,11 @@ curl https://trellis.getto.systems/ci/bump-version/VERSION/dist/bump_version.sh 
 
 #### Customize
 
--   `BUMP_VERSION_FILE`: specify "release-version" file: default: `.release-version`
--   `BUMP_MAJOR_FILE`: specify "bump-major-release" file: default: `.bump-major-release`
--   `BUMP_IGNORE_FILE`: specify "bump-ignore" file: default: `.bump-ignore`
--   `BUMP_SCRIPT`: specify "bump-script" file: default: `.bump-version.sh`
--   `BUMP_VERSION_SUFFIX`: specify version suffix: default: empty
+-   `BUMP_VERSION_FILE`: specify "release-version" file; default: `.release-version`
+-   `BUMP_MAJOR_FILE`: specify "bump-major-release" file; default: `.bump-major-release`
+-   `BUMP_IGNORE_FILE`: specify "bump-ignore" file; default: `.bump-ignore`
+-   `BUMP_SCRIPT`: specify "bump-script" file; default: `.bump-version.sh`
+-   `BUMP_VERSION_SUFFIX`: specify version suffix; default: empty
 
 #### versioning rule
 
@@ -99,9 +99,20 @@ curl https://trellis.getto.systems/ci/bump-version/VERSION/dist/push_tags.sh | b
 -   `git push --tags` : to origin
 -   `git push --tags` : to `.git-maint-repo` if exists
 
-options
+#### Customize
 
--   `.bump-version-tag.sh` : custom tagging sh : default `git tag $(cat .release-version)`
+-   `BUMP_TAG_SCRIPT`: specify bump-tag-script file; default: `.bump-version-tag.sh`
+-   `BUMP_MAINT_REPO_FILE`: specify maint-repo file; default: `.git-maint-repo`
+
+#### bump-tag-script file
+
+this file will load from main-script
+
+if this file is missing, the following script will be run
+
+```bash
+git tag $(cat $BUMP_VERSION_FILE)
+```
 
 ## License
 
